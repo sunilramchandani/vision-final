@@ -1,0 +1,581 @@
+.dynamic-text-container-box{
+	background-color: rgba(54,56,60,0.7);
+	z-index:1;
+	border-radius:12px;
+	letter-spacing: 2px;
+	margin-top: -127;
+	color:white;
+}
+.logo-aupair-icon2{
+    height: 35%;
+    width: 40%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}		
+	.p-header p{
+		color:white;
+	}
+	.p-header{
+		padding:0;
+	}
+.dynamic-text-container{
+	padding-left: 5%;
+	color:white !important; 
+	padding-bottom: 3%;
+
+}
+.p-dynamic{
+	color:white;
+}
+.text-inside-header-picture{
+	margin-top: -200px;
+	padding-bottom: 15%;
+}
+
+.header{
+    height: 75%;
+  	width:100%;
+  	overflow-x: hidden;
+
+  width:100%;
+}
+body{
+	background-color: white;
+}
+
+blockquote {
+font-family: Georgia, serif;
+font-size: 18px;
+font-style: italic;
+margin: 0.25em 0;
+padding: 0.35em 40px;
+line-height: 1.45;
+position: relative;
+color: #383838;
+border:none;
+}
+
+blockquote:before {
+display: block;
+padding-left: 10px;
+content: "\201C";
+font-size: 80px;
+position: absolute;
+left: -20px;
+top: -30px;
+color: #7a7a7a;
+}
+blockquote:after {
+    font-family: Georgia, serif;
+    position: absolute;
+   /* display: block; don't use this, it raised the quote too high from the bottom - defeated line-height? */
+    float:right;
+    line-height: 1;
+    right:60;
+    bottom: 6px;
+    content: "\201D";
+    font-size: 80px;
+    color: #7a7a7a;
+}
+
+blockquote cite {
+color: #999999;
+font-size: 14px;
+display: block;
+margin-top: 5px;
+}
+.icon-title{
+	color: #c42b16;
+	padding-bottom: 4%;
+}
+	
+.aupair-icon2{
+    height: 70%;
+    box-shadow: 0px 0px 12px 0px #ccc;
+    border-radius: 10px;
+}
+
+.aupair-icon2 h3{
+	font-size: 18px;
+}
+
+.aupair-icon{
+	box-shadow: 0px 0px 12px 0px #ccc;
+	height:50%;
+	border-radius: 10px;
+}
+.aupair-icon-text{
+	padding-right: 3%;
+	padding-left: 3%;
+	padding-bottom: 5%;
+	line-height: 1.6;
+}
+.logo-aupair-icon{
+	padding-top: 5%;
+	padding-bottom: 5%;
+}
+
+
+.locate-me {
+	background: linear-gradient(to top left, #b31f10 20%, #950904 90%);
+    color: white;
+    border-radius: 8px;
+    font-size: 15px;
+}
+.locate-me99 {
+	background: linear-gradient(to top left, #b31f10 20%, #950904 90%);
+    color: white;
+    border-radius: 8px;
+    font-size: 15px;
+
+}
+
+.testimony-description{
+	padding-top: 5%;
+}
+.testimony-picture{
+	height:335px;
+	width:370px;
+}
+.picture-header{
+	padding-bottom: 5%;
+}
+.testimony-content{
+	padding-bottom: 7%;
+}
+.testimony-header{
+	padding-bottom: 5%;
+	padding-top: 5%;
+}
+
+.whats-next{
+	padding: 76px 0px 30px;
+    margin: 20px 0px 20px 0px;
+    font-size: 18px;
+}
+
+#about-next{
+    color: #7d7d7d;
+}
+
+
+#reserve-title{
+	color: #c42b16;
+}
+
+#p-content-red{
+	color:#e28174;
+}
+.application-logo{
+	height: 10%;
+}
+/* .circle-number{
+	width: 50px;	
+	height: 50px;
+	background: #c42b16;
+	border: 10px;
+} */
+.internship-content{
+	margin: 96px 0 0 0;
+}
+
+.boxshadow{
+	border-radius: 10px;
+	box-shadow: 0px 0px 6px 0px #ccc;
+	padding: 70px;
+	margin-bottom: 60px;
+  
+}
+
+.button{
+	margin-top: 68px;
+}
+
+.red-button{
+	background: linear-gradient(to top left, #b31f10 20%, #950904 90%);
+	 display: inline-block;
+	 color:white;
+	 border-radius: 8px;
+	 margin-bottom: 12px;
+	 width: 240px;
+	 margin-top: 3px;
+}
+.what-next-text{
+	padding-top: 5%;
+	padding-bottom: 5%;
+}
+.number-icon{
+	position: absolute;
+	top: -36;
+	right: 45%;
+}
+.number-icon2{
+	position: absolute;
+	top: -35;
+	right: 45%;
+}
+.number-icon3{
+	position: absolute;
+	top: -35;
+	right: 45%;
+}
+.img-border {
+    margin-top: -20%;
+    width: 104%;
+    margin-left: -4%;
+    display: block;
+}
+.img-line{
+	display: none;
+}
+
+.whole-page{
+	padding: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* -------------------------------------------------------------------MEDIA QUERIES---------------------------------------------------------------------------- */
+
+@media screen and (max-width: 1199px) and (min-width: 992px) {
+	.testimony-picture {
+	    height: 300px;
+	    width: 300px;
+	}
+	.locate-me {
+		background: linear-gradient(to top left, #b31f10 20%, #950904 90%);
+	    color: white;
+	    border-radius: 8px;
+	    font-size: 15px;
+	    position: absolute;
+	    bottom: 8%;
+	    left: 27%;
+	}
+	.locate-me21 {
+		background: linear-gradient(to top left, #b31f10 20%, #950904 90%);
+	    color: white;
+	    border-radius: 8px;
+	    font-size: 15px;
+	    position: absolute;
+	    bottom: -9%;
+	    left: 24%;
+	}
+}
+
+
+
+@media screen and (max-width: 991px) and (min-width: 720px) {
+	.icon-title {
+	    color: #c42b16;
+	    padding-bottom: 0%;
+	}
+	.dynamic-text-container {
+	    padding-left: 0%;
+	    color: white !important;
+	    padding-bottom: 3%;
+	}
+	.text-description {
+	    line-height: 1.5;
+	    font-size: 34px;
+	    padding-right: 27%;
+	    padding-left: 8%;
+	    letter-spacing: 2px;
+	}
+	.img-line{
+		display: block;
+		margin-top: -5px;
+	}
+	.img-border{
+		display:none;
+	}
+	#p-content {
+	    color: #7d7d7d;
+	    font-size: 14px;
+	    line-height: 2;
+	    padding-bottom: 10%;
+	}
+	.aupair-icon-text {
+	    padding-right: 3%;
+	    padding-left: 3%;
+	    padding-bottom: 0%;
+	    line-height: 1.2;
+	    font-size: 15px;
+	}
+	.locate-me {
+		background: linear-gradient(to top left, #b31f10 20%, #950904 90%);
+	    color: white;
+	    border-radius: 8px;
+	    font-size: 15px;
+	    position: absolute;
+	    bottom: 10%;
+	    left: 23%;
+	}
+	.locate-me21 {
+		background: linear-gradient(to top left, #b31f10 20%, #950904 90%);
+	    color: white;
+	    border-radius: 8px;
+	    font-size: 15px;
+	    position: absolute;
+	    bottom: -5%;
+	    left: 16%;
+	}
+	.testimony-picture {
+	    height: 260px;
+	    width: 230px;
+	}
+	.testimony-header {
+	    padding-bottom: 5%;
+	    padding-top: 0%;
+	}
+	.number-icon {
+	    position: absolute;
+	    top: 180px;
+	}
+}
+
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media screen and (max-width: 719px) and (min-width: 320px) {
+	.intership-content{
+		font-size: 0.75em;
+	}
+	.locate-me-form{
+		background: linear-gradient(to top left, #b31f10 20%, #950904 90%);
+		color: white;
+		border-radius: 5px;
+		font-size: 9px;
+		bottom: -65% !important;
+		left: 4%;
+		width: 90%;
+	}
+	.aupair p {
+		font-size: 0.75em;
+	}
+	.text-inside-boxes{
+		padding-top: 10%;
+	}
+	.p-dynamic{
+		color: white;
+    	text-align: center;
+    	padding-left: 5%;
+    	padding-right: 5%;
+	}
+	.bullets{
+		padding-top: 5%;
+		text-indent: -5px;
+	}
+	 li span {
+        margin-left: -7px;
+    }
+	blockquote {
+    	font-size: 0.75em;
+	}
+	blockquote cite {
+	    font-size: 0.75em;
+	}
+	blockquote:after {
+	    right: 12px;
+	}
+	.dynamic-text-container {
+	    padding-left: 0%; 
+	    color: white !important;
+	    padding-bottom: 3%;
+	}
+	.aupair-icon{
+		height: 40%;
+		padding: 0;
+	}
+
+	.aupair-icon2{
+		height: 55%;
+		padding: 0;
+	}
+
+	.aupair-icon2 h3{
+		font-size: 1.065em;
+	}
+
+	.intership-content{
+		padding: 0;
+	}
+
+	.internship-icon{
+		padding-top: 10%;
+	}
+
+
+	.dynamic-text-container-box {
+	    background-color: #a4382b;
+	    z-index: 0;
+	    border-radius: 0px;
+	    letter-spacing: 1px;
+	    margin-top: -234.5px;
+	    color: white;
+	    height: 421.5px;
+	    opacity: 0.9;
+	}
+
+	.dynamic-text-container-box h4{
+		padding-top: 35%;
+   		text-align: center;
+  		font-size: 2em;
+ 		font-weight: bold;
+	}
+
+	.dynamic-text-container h1{
+		text-align: center;
+    	font-size: 3.5em;
+    	letter-spacing: 3px;
+	}
+	.dynamic-text-container-box p{
+		text-align: center;
+	}
+	.header{
+	    height: 425px;
+	    width: auto;
+	}
+
+	.img-line{
+		display: block;
+		margin-top: -5px;
+	}
+	.img-border{
+		display:none;
+	}
+
+	#p-content {
+	    color: #7d7d7d;
+	    font-size: 12px;
+	    line-height: 1.5;
+	    padding-bottom: 0%;
+		padding-top: 15%;
+		padding-right: 10%;
+	}
+	#p-content-red {
+	    color: #e28174;
+	    letter-spacing: 1;
+	    font-size: 12;
+	}
+	#p-icon {
+	    color: #900603;
+	    letter-spacing: 2px;
+	    font-size: 12px;
+	    padding-right: 0%;
+	    padding-left: 0%;
+	}
+	#reserve-title {
+	    color: #c42b16;
+	    margin-bottom: 25px;
+	    letter-spacing: 2px;
+	    font-size: 16px;
+	}
+
+	.boxshadow {
+	    border-radius: 10px;
+	    box-shadow: 0px 0px 6px 0px #ccc;
+		margin-bottom: 18%;
+		padding: 0;
+	}
+
+	.box-1{
+		height: 50%;
+	}
+
+	.locate-me21 {
+		background: linear-gradient(to top left, #b31f10 20%, #950904 90%);
+	    color: white;
+	    border-radius: 8px;
+	    font-size: 9px;
+	}
+	.number-icon {
+	    position: absolute;
+	    top: -22px;
+	    height: 45;
+	}
+	.number-icon2 {
+	    position: absolute;
+	    top: -20px;
+	    height: 45;
+	}
+	.number-icon3 {
+	    position: absolute;
+	    top: -20px;
+	    height: 45;
+	}
+	.img-logo21{
+		padding-top: 10%;
+	}
+	.p-header p {
+	    color: white;
+	    padding: 5%;
+	}
+	.p-header{
+		text-align:center;
+		padding:3%;
+	}
+	.testimony-picture {
+	    height: 146px;
+	    width: 90px;
+	}
+	.logo-aupair-icon {
+	    padding-top: 10%;
+	    padding-bottom: 5%;
+	    height: 38%;
+	    width: 35%;
+	}
+	.logo-aupair-icon2 {
+		padding-top: 15%;
+	    padding-bottom: 5%;
+	    height: 30%;
+	    width: 35%;
+	}
+	.aupair-icon-text {
+	    padding-right: 0%;
+		padding-left: 0%;
+	    padding-bottom: 5%;
+	    line-height: unset;
+	    font-size: 0.75em;
+	}
+
+	.locate-me {
+	    background: linear-gradient(to top left, #b31f10 20%, #950904 90%);
+	    border-radius: 5px;
+	    font-size: 9px;
+	    top: 195px;
+	    left: 15%;
+    	right: 15%;
+	}
+
+	.locate-me1{
+		background: linear-gradient(to top left, #b31f10 20%, #950904 90%);
+		position: absolute;
+		color: white;
+		border-radius: 5px;
+		font-size: 9px;
+		bottom: 3%;
+		left: 5%;
+		width: 90%;
+	}
+	
+
+	.what-next-text {
+	    padding-top: 8%;
+		padding-bottom: 5%;
+		width: 105%;
+		padding: 30px;
+	}
+}
