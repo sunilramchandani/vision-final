@@ -48,7 +48,7 @@ class CompanyLib
         $company->stipend = $data['stipend'];
         $company->stipend_maximum = $data['stipend_maximum'];
         $company->state = $data['state'];
-        
+        $company->start_date = $data['start_date'];
         $company->country = $data['country'];
         $company->remark = $data['remark'];
         $company->featured = $data['featured'];
@@ -122,7 +122,7 @@ class CompanyLib
         $company->stipend = $data['stipend'];
         $company->stipend_maximum = $data['stipend_maximum'];
         $company->state = $data['state'];
-
+        $company->start_date = $data['start_date'];
         $company->country = $data['country'];
         $company->remark = $data['remark'];
         $company->featured = $data['featured'];

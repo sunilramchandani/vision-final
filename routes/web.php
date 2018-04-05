@@ -332,21 +332,16 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
             'as' => 'workcompany.store_qualification'
         ]);
 
-        Route::group(['prefix' => 'duration'], function() {
-
-            Route::get('/list', [
-                'uses' => 'WorkCompanyController@durationIndex',
-                'as' => 'workcompany.durationList'
+        Route::group(['prefix' => 'industry'], function() {
+        
+            Route::get('/new_industry/{id}', [
+                'uses' => 'WorkCompanyController@createindustry',
+                'as' => 'workcompany.new_industry'
             ]);
         
-            Route::get('/new_duration/{id}', [
-                'uses' => 'WorkCompanyController@createDuration',
-                'as' => 'workcompany.new_duration'
-            ]);
-        
-            Route::post('/store_duration/{id}', [
-                'uses' => 'WorkCompanyController@storeDuration',
-                'as' => 'workcompany.store_duration'
+            Route::post('/store_industry/{id}', [
+                'uses' => 'WorkCompanyController@storeindustry',
+                'as' => 'workcompany.store_industry'
             ]);
         
         }); 
@@ -439,7 +434,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
             'uses' => 'InternshipCompanyController@createQualification',
             'as' => 'internshipcompany.new_qualification'
         ]);
-
+                            
         Route::post('/new_qualification/{id}', [
             'uses' => 'InternshipCompanyController@storeQualification',
             'as' => 'internshipcompany.store_qualification'
@@ -447,21 +442,16 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
 
         
 
-        Route::group(['prefix' => 'duration'], function() {
+        Route::group(['prefix' => 'industry'], function() {
 
-            Route::get('/list', [
-                'uses' => 'InternshipCompanyController@durationIndex',
-                'as' => 'internshipcompany.durationList'
+            Route::get('/new_industry/{id}', [
+                'uses' => 'InternshipCompanyController@createindustry',
+                'as' => 'internshipcompany.new_industry'    
             ]);
         
-            Route::get('/new_duration/{id}', [
-                'uses' => 'InternshipCompanyController@createDuration',
-                'as' => 'internshipcompany.new_duration'
-            ]);
-        
-            Route::post('/store_duration/{id}', [
-                'uses' => 'InternshipCompanyController@storeDuration',
-                'as' => 'internshipcompany.store_duration'
+            Route::post('/store_industry/{id}', [
+                'uses' => 'InternshipCompanyController@storeindustry',
+                'as' => 'internshipcompany.store_industry'
             ]);
         
         }); 

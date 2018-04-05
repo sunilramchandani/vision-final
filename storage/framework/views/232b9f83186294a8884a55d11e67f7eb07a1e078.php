@@ -45,11 +45,11 @@
           </div>
         </div>
     <div class = " row">
-        <div class = "col-md-12 col-xs-12 Top-header-message text-center">
-            <h1>Your Destination</h1>
-            <div class = "col-xs-12 col-md-4 col-md-offset-4">
-                <p> Your journey begins with Vision International and its wide network of reputable partners across the country, enabling you to travel and work in your location of choice. </p>
-            </div>
+        <div class = "col-xs-12 col-md-4 col-md-offset-4 Top-header-message text-center">
+            <?php $__currentLoopData = $featuredimage_internship; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $first): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php echo $first->first_static; ?>
+
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
     </div>
     <div class = "body-content" id= "body-content">
@@ -57,22 +57,18 @@
             <div class = "hidden-xs hidden-sm col-md-10 filter-main">
                 <div class = "col-xs-12">
                     <div class="dropdown">
-                      <a class="dropbtn-filter"><strong>Industry </strong><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                      <a class="dropbtn-filter"><strong>State </strong><i class="fa fa-angle-down" aria-hidden="true"></i></a>
                       <div class="dropdown-content-filler">
                       <div id="links">
-                        <?php if( Request::get('state')  ): ?>
-                            <?php $__currentLoopData = $internship_filter; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $filter): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <?php $__currentLoopData = $filter->work_industry; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $industry): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <a href="/workcompany?industry=<?php echo e($industry->industry_name); ?>"><?php echo e($industry->industry_name); ?></a>
+                      <?php if( Request::get('state')  ): ?>
+                                <?php $__currentLoopData = $internshipCompany_table_filter_state; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $filter): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <a href="/workcompany?state=<?php echo e($filter->state); ?>"><?php echo e($filter->state); ?></a>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        <?php else: ?>
-                            <?php $__currentLoopData = $internshipCompany_table; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $company): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <?php $__currentLoopData = $company->work_industry; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $industry): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <a href="/workcompany?industry=<?php echo e($industry->industry_name); ?>"><?php echo e($industry->industry_name); ?></a>
+                            <?php else: ?>
+                                <?php $__currentLoopData = $internshipCompany_table_filter_state; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $company): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <a href="/workcompany?state=<?php echo e($company->state); ?>"><?php echo e($company->state); ?></a>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        <?php endif; ?>
+                            <?php endif; ?>
                         </div>
                       </div>
                     </div>
@@ -93,6 +89,39 @@
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         <?php endif; ?>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="dropdown">
+                        <a class="dropbtn-filter"><strong>Industry </strong><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                        <div class="dropdown-content-filler">
+                          <div id="links">
+                          <a href="/workcompany">All</a>
+                          <?php if( Request::get('industry_name')  ): ?>
+                                <?php $__currentLoopData = $internshipCompany_table_filter_industry; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $filter): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <a href="/workcompany?industry_name=<?php echo e($filter->industry_name); ?>"><?php echo e($filter->industry_name); ?></a>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php else: ?>
+                                <?php $__currentLoopData = $internshipCompany_table_filter_industry; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $company): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <a href="/workcompany?industry_name=<?php echo e($company->industry_name); ?>"><?php echo e($company->industry_name); ?></a>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                      <a class="dropbtn-filter"><strong>Start Date </strong><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                      <div class="dropdown-content-filler">
+                      <div id="links">
+                      <?php if( Request::get('duration')  ): ?>
+                                <?php $__currentLoopData = $internshipCompany_table_filter_state; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $filter): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <a href="/workcompany?duration=<?php echo e($filter->start_date); ?>"><?php echo e($filter->start_date); ?></a>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php else: ?>
+                                <?php $__currentLoopData = $internshipCompany_table_filter_state; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $company): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <a href="/workcompany?duration=<?php echo e($company->start_date); ?>"><?php echo e($company->start_date); ?></a>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php endif; ?>
                         </div>
                       </div>
                     </div>
@@ -248,9 +277,11 @@
     <div class = "container">
         <div class = "col-xs-12">
             <div class = "row text-center what-next-text">
-                <h2 id=whatsnext-title>What's Next?</h2>
-                <div class = "col-xs-12 col-md-4 col-md-offset-4">
-                    <p>Our process is  smooth and easy. We can facilitate your application and get you to your dream destination as soon as possible!</p>
+                <div class = "col-xs-12 col-md-4 col-md-offset-4 Top-header-message text-center">
+                    <?php $__currentLoopData = $featuredimage_internship; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $first): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php echo $first->second_static; ?>
+
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
             </div>
         </div>
@@ -412,9 +443,11 @@
 
         <div class="container">
             <div class="row testimony-header">
-                <div class=" col-md-8 col-md-offset-2 col-xs-12 about-font text-center">
-                     <h3>Our Community</h3>
-                     <p>We are proud to have an amazing community of students and professionals who have received the VIP treatment. Listen to their stories.</p>
+                <div class = "col-xs-12 col-md-4 col-md-offset-4 Top-header-message text-center">
+                    <?php $__currentLoopData = $featuredimage_internship; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $first): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php echo $first->third_static; ?>
+
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
             </div>
             <div class = "row testimony-content">

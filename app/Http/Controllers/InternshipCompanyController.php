@@ -26,6 +26,12 @@ class InternshipCompanyController extends Controller
      */
     public function index(Request $request)
     {
+
+        $internshipCompany_table_filter_state = InternshipCompany::groupBy('state')->get();
+        $internshipCompany_table_filter_industry = InternshipIndustry::groupBy('industry_name')->get();
+        $internshipCompany_table_filter_duration = InternshipCompany::groupBy('start_date')->get();
+
+
         $featuredimage_internship_us = FeaturedImage::where('page_name','internship US')->get();
         $featuredimage_internship_aus = FeaturedImage::where('page_name','internship AUS')->get();
         $steps = PageStep::where('page_name','internship')->get();
@@ -130,7 +136,7 @@ class InternshipCompanyController extends Controller
                                 ->orderBy('id', 'ASC')
                                 ->pluck('longtitude');
             
-            return view('users.internship.internship', compact('rate_au_3rd','rate_au_2nd','rate_au_1st','rate_us_3rd','rate_us_2nd','rate_us_1st','rate_us','rate_au','internship_latitude','internship_longtitude','internship_featured','testimonial_us','testimonial_aus', 'featuredimage_internship_us', 'featuredimage_internship_aus', 'internshipCompany_table', 'internship_filter','internship_addresses','internship_name','internship_desc','internship_id', 'internship_image','steps'));
+            return view('users.internship.internship', compact('internshipCompany_table_filter_state','internshipCompany_table_filter_industry ','internshipCompany_table_filter_duration','rate_au_3rd','rate_au_2nd','rate_au_1st','rate_us_3rd','rate_us_2nd','rate_us_1st','rate_us','rate_au','internship_latitude','internship_longtitude','internship_featured','testimonial_us','testimonial_aus', 'featuredimage_internship_us', 'featuredimage_internship_aus', 'internshipCompany_table', 'internship_filter','internship_addresses','internship_name','internship_desc','internship_id', 'internship_image','steps'));
         }
 
        /* else if (request()->has('state')){
@@ -207,7 +213,71 @@ class InternshipCompanyController extends Controller
                                 ->orderBy('id', 'ASC')
                                 ->pluck('longtitude');
             
-            return view('users.internship.internship', compact('rate_au_3rd','rate_au_2nd','rate_au_1st','rate_us_3rd','rate_us_2nd','rate_us_1st','rate_us','rate_au','internship_latitude','internship_longtitude','internship_featured','testimonial_us','testimonial_aus', 'featuredimage_internship_us', 'featuredimage_internship_aus', 'internshipCompany_table', 'internship_filter','internship_addresses','internship_name','internship_desc','internship_id', 'internship_image','steps'));
+            return view('users.internship.internship', compact('internshipCompany_table_filter_state','internshipCompany_table_filter_industry','internshipCompany_table_filter_duration','rate_au_3rd','rate_au_2nd','rate_au_1st','rate_us_3rd','rate_us_2nd','rate_us_1st','rate_us','rate_au','internship_latitude','internship_longtitude','internship_featured','testimonial_us','testimonial_aus', 'featuredimage_internship_us', 'featuredimage_internship_aus', 'internshipCompany_table', 'internship_filter','internship_addresses','internship_name','internship_desc','internship_id', 'internship_image','steps'));
+        }
+
+        else if (request()->has('industry_name')){
+
+            $get_industry = InternshipIndustry::where('industry_name', request('industry_name'))
+                            ->pluck('company_id');
+
+            $internshipCompany_table = InternshipCompany::with('opportunity', 'qualifications','internship_industry', 'internship_duration')
+                                    ->orderBy('featured','desc')
+                                    ->orderBy('id', 'ASC')
+                                    ->whereIn('id', $get_industry)
+                                    ->get();
+
+            
+            $internship_addresses = InternshipCompany::whereIn('id', $get_industry)
+                                    ->whereNull('deleted_at')
+                                    ->orderBy('featured','desc')
+                                    ->orderBy('id', 'ASC')
+                                    ->pluck('housing_address');
+            $internship_name = InternshipCompany::whereIn('id', $get_industry)
+                                ->whereNull('deleted_at')
+                                ->orderBy('featured','desc')
+                                ->orderBy('id', 'ASC')
+                                ->pluck('company_name');
+            $internship_desc = InternshipCompany::whereIn('id', $get_industry)
+                                ->whereNull('deleted_at')
+                                ->orderBy('featured','desc')
+                                ->orderBy('id', 'ASC')
+                                ->pluck('description');
+            $internship_filter = InternshipCompany::with('opportunity', 'qualifications','internship_industry', 'internship_duration')
+                                ->whereIn('id', $get_industry)
+                                ->whereNull('deleted_at')
+                                ->orderBy('featured','desc')
+                                ->orderBy('id', 'ASC')
+                                ->get();
+            
+            $internship_id = InternshipCompany::whereIn('id', $get_industry)
+                            ->whereNull('deleted_at')
+                            ->orderBy('featured','desc')
+                            ->orderBy('id', 'ASC')
+                            ->pluck('id');
+            $internship_image = InternshipCompany::whereIn('id', $get_industry)
+                                ->whereNull('deleted_at')
+                                ->orderBy('featured','desc')
+                                ->orderBy('id', 'ASC')
+                                ->pluck('image');
+            $internship_featured = InternshipCompany::whereIn('id', $get_industry)
+                                ->whereNull('deleted_at')
+                                ->orderBy('featured','desc')
+                                ->orderBy('id', 'ASC')
+                                ->pluck('featured');
+
+            $internship_latitude = InternshipCompany::whereIn('id', $get_industry)
+                                ->whereNull('deleted_at')
+                                ->orderBy('featured','desc')
+                                ->orderBy('id', 'ASC')
+                                ->pluck('latitude');
+            $internship_longtitude = InternshipCompany::whereIn('id', $get_industry)
+                                ->whereNull('deleted_at')
+                                ->orderBy('featured','desc')
+                                ->orderBy('id', 'ASC')
+                                ->pluck('longtitude');
+            
+            return view('users.internship.internship', compact('internshipCompany_table_filter_state','internshipCompany_table_filter_industry','internshipCompany_table_filter_duration','rate_au_3rd','rate_au_2nd','rate_au_1st','rate_us_3rd','rate_us_2nd','rate_us_1st','rate_us','rate_au','internship_latitude','internship_longtitude','internship_featured','testimonial_us','testimonial_aus', 'featuredimage_internship_us', 'featuredimage_internship_aus', 'internshipCompany_table', 'internship_filter','internship_addresses','internship_name','internship_desc','internship_id', 'internship_image','steps'));
         }
 
         else if (request()->has('state')){
@@ -269,7 +339,7 @@ class InternshipCompanyController extends Controller
                                 ->orderBy('id', 'ASC')
                                 ->pluck('longtitude');
             
-            return view('users.internship.internship', compact('rate_au_3rd','rate_au_2nd','rate_au_1st','rate_us_3rd','rate_us_2nd','rate_us_1st','rate_us','rate_au','internship_latitude','internship_longtitude','internship_featured','testimonial_us','testimonial_aus', 'featuredimage_internship_us', 'featuredimage_internship_aus', 'internshipCompany_table', 'internship_filter','internship_addresses','internship_name','internship_desc','internship_id', 'internship_image','steps'));
+            return view('users.internship.internship', compact('internshipCompany_table_filter_state','internshipCompany_table_filter_industry','internshipCompany_table_filter_duration','rate_au_3rd','rate_au_2nd','rate_au_1st','rate_us_3rd','rate_us_2nd','rate_us_1st','rate_us','rate_au','internship_latitude','internship_longtitude','internship_featured','testimonial_us','testimonial_aus', 'featuredimage_internship_us', 'featuredimage_internship_aus', 'internshipCompany_table', 'internship_filter','internship_addresses','internship_name','internship_desc','internship_id', 'internship_image','steps'));
         }
             
 
@@ -278,61 +348,61 @@ class InternshipCompanyController extends Controller
             $internshipCompany_table = InternshipCompany::with('opportunity', 'qualifications','internship_industry', 'internship_duration')
                                     ->orderBy('featured','desc')
                                     ->orderBy('id', 'ASC')
-                                    ->where('duration', request('duration'))
+                                    ->where('start_date', request('duration'))
                                     ->get();
 
 
             
-            $internship_addresses = InternshipCompany::where('duration', request('duration'))
+            $internship_addresses = InternshipCompany::where('start_date', request('duration'))
                                     ->whereNull('deleted_at')
                                     ->orderBy('featured','desc')
                                     ->orderBy('id', 'ASC')
                                     ->pluck('housing_address');
-            $internship_name = InternshipCompany::where('duration', request('duration'))
+            $internship_name = InternshipCompany::where('start_date', request('duration'))
                                 ->whereNull('deleted_at')
                                 ->orderBy('featured','desc')
                                 ->orderBy('id', 'ASC')
                                 ->pluck('company_name');
-            $internship_desc = InternshipCompany::where('duration', request('duration'))
+            $internship_desc = InternshipCompany::where('start_date', request('du`ation'))
                                 ->whereNull('deleted_at')
                                 ->orderBy('featured','desc')
                                 ->orderBy('id', 'ASC')
                                 ->pluck('description');
             $internship_filter = InternshipCompany::with('opportunity', 'qualifications','internship_industry', 'internship_duration')
-                                ->where('duration', request('duration'))
+                                ->where('start_date', request('duration'))
                                 ->whereNull('deleted_at')
                                 ->orderBy('featured','desc')
                                 ->orderBy('id', 'ASC')
                                 ->get();
             
-            $internship_id = InternshipCompany::where('duration', request('duration'))
+            $internship_id = InternshipCompany::where('start_date', request('duration'))
                             ->whereNull('deleted_at')
                             ->orderBy('featured','desc')
                             ->orderBy('id', 'ASC')
                             ->pluck('id');
-            $internship_image = InternshipCompany::where('duration', request('duration'))
+            $internship_image = InternshipCompany::where('start_date', request('duration'))
                                 ->whereNull('deleted_at')
                                 ->orderBy('featured','desc')
                                 ->orderBy('id', 'ASC')
                                 ->pluck('image');
-            $internship_featured = InternshipCompany::where('duration', request('duration'))
+            $internship_featured = InternshipCompany::where('start_date', request('duration'))
                                 ->whereNull('deleted_at')
                                 ->orderBy('featured','desc')
                                 ->orderBy('id', 'ASC')
                                 ->pluck('featured');
 
-            $internship_latitude = InternshipCompany::where('duration', request('duration'))
+            $internship_latitude = InternshipCompany::where('start_date', request('duration'))
                                 ->whereNull('deleted_at')
                                 ->orderBy('featured','desc')
                                 ->orderBy('id', 'ASC')
                                 ->pluck('latitude');
-            $internship_longtitude = InternshipCompany::where('duration', request('duration'))
+            $internship_longtitude = InternshipCompany::where('start_date', request('duration'))
                                 ->whereNull('deleted_at')
                                 ->orderBy('featured','desc')
                                 ->orderBy('id', 'ASC')
                                 ->pluck('longtitude');
             
-            return view('users.internship.internship', compact('rate_au_3rd','rate_au_2nd','rate_au_1st','rate_us_3rd','rate_us_2nd','rate_us_1st','rate_us','rate_au','internship_latitude','internship_longtitude','internship_featured','testimonial_us','testimonial_aus', 'featuredimage_internship_us', 'featuredimage_internship_aus', 'internshipCompany_table', 'internship_filter','internship_addresses','internship_name','internship_desc','internship_id', 'internship_image','steps'));
+            return view('users.internship.internship', compact('internshipCompany_table_filter_state','internshipCompany_table_filter_industry','internshipCompany_table_filter_duration','rate_au_3rd','rate_au_2nd','rate_au_1st','rate_us_3rd','rate_us_2nd','rate_us_1st','rate_us','rate_au','internship_latitude','internship_longtitude','internship_featured','testimonial_us','testimonial_aus', 'featuredimage_internship_us', 'featuredimage_internship_aus', 'internshipCompany_table', 'internship_filter','internship_addresses','internship_name','internship_desc','internship_id', 'internship_image','steps'));
         }
         else{
             $internshipCompany_table = InternshipCompany::with('opportunity', 'qualifications','internship_industry', 'internship_duration')
@@ -377,7 +447,7 @@ class InternshipCompanyController extends Controller
                                     ->pluck('longtitude');
 
 
-            return view('users.internship.internship', compact('rate_au_3rd','rate_au_2nd','rate_au_1st','rate_us_3rd','rate_us_2nd','rate_us_1st','rate_us','rate_au','internship_latitude','internship_longtitude', 'testimonial_us','testimonial_aus', 'featuredimage_internship_us', 'featuredimage_internship_aus', 'internshipCompany_table','internship_addresses','internship_name','internship_desc','internship_id','internship_image','internship_featured','steps'));
+            return view('users.internship.internship', compact('internshipCompany_table_filter_state','internshipCompany_table_filter_industry','internshipCompany_table_filter_duration','rate_au_3rd','rate_au_2nd','rate_au_1st','rate_us_3rd','rate_us_2nd','rate_us_1st','rate_us','rate_au','internship_latitude','internship_longtitude', 'testimonial_us','testimonial_aus', 'featuredimage_internship_us', 'featuredimage_internship_aus', 'internshipCompany_table','internship_addresses','internship_name','internship_desc','internship_id','internship_image','internship_featured','steps'));
         }
     }
 
@@ -764,29 +834,23 @@ class InternshipCompanyController extends Controller
         return redirect()->route('internshipcompany.list')->with($success);
     }
 
-    public function durationIndex()
+    public function createindustry($id)
     {
-        $duration_table = InternshipDuration::all();
-        return view('admin.internship_company.duration.list', compact('duration_table'));
+        $company = CompanyLib::getById($id);
+        return view('admin.internship_company.industry', compact('company'));
     }
 
-    public function createDuration($id)
-    {
-        $duration = InternshipDuration::find($id);
-        return view('admin.internship_company.duration.form', compact('duration'));
-    }
-
-    public function storeDuration($id, Request $request)
+    public function storeindustry($id, Request $request)
     {
 
-        $duration = InternshipDuration::find($id);
-        $duration->duration_months	 = $request['duration_months'];
-        $duration->duration_price = $request['duration_price'];
-        $duration->duration_start_date = $request['duration_start_date'];
-        $duration->save();
+        $company = CompanyLib::getById($id);
 
+        $industry = new InternshipIndustry;
+        $industry->industry_name = $request['industry_name'];
+        $industry->company_id = $id;
+        $industry->save();
         $success = array('ok'=> 'Success');
-        return redirect()->route('internshipcompany.durationList')->with($success);
+        return redirect()->route('internshipcompany.list')->with($success);
     }
 
     public function viewTrash(){

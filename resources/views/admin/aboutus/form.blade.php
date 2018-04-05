@@ -21,10 +21,10 @@
                         <label for="position">
                             Department
                         </label>
-                        <select class ="form-control"name="about_department" id="about_department">
+                        <select class ="form-control" name="about_department" id="about_department">
                             <option value="Management">Management</option>
                             <option value="Operations">Operations</option>
-                            <option value="Marketting">Marketting</option>
+                            <option value="Marketting">Marketing</option>
 
 
                         </select>

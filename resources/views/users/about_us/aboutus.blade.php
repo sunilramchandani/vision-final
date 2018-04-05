@@ -20,12 +20,11 @@
 
     <!-- Text header on top -->
     <div class = "container header-text">
-    	<div class = "text-center bigger-header">
-    		<h4> We believe that... </h4>
-    		<div class = "col-xs-12 col-md-6 col-md-offset-3 smaller-header">
-    			<p>We are a dynamic, energetic, and driven team committed to delivering unlimited opportunities to deserving students and prefessionals.</p>
-    		</div>
-    	</div>
+         <div class = "col-xs-12 col-md-4 col-md-offset-4 Top-header-message text-center">
+            @foreach($featuredimage_aboutUs as $first)
+                {!!$first->first_static!!}
+            @endforeach
+        </div>
     </div>
 
     <!--Boxes-->

@@ -121,27 +121,24 @@
             @endforeach
         </div>
 {{-- END --}} {{-- NEXT & PREVIOUS SLIDER --}}
-        @if($previousnews != Null && $nextnews != Null)
+         @if($previousnews == 'none' && $nextnews == 'none')
+        @else
         <div class="row">
             <div class="container col-xs-12 next-previous-container">
                 <div class="col-xs-6 left">
                     <div class="text-right arrow">
-                        @if($previousnews != Null)
                         <a href="{{$previousnews->id}}" class="text-right"> < Previous</a>
                         <br>
                         <a href="{{$previousnews->id}}" class="text-right"><h4>{{$previousnews->title}}</h4></a>
-                        @endif
                     </div>
                 </div>
                 <div class="col-xs-6 right">
                     <div class="text-left arrow">
-                        @if($nextnews != Null)
                         <a href="{{$nextnews->id}}" class="text-left">Next ></a>
                         <br>
                         <a href="{{$nextnews->id}}" class="text-left">
                             <h4>{{$nextnews->title}}</h4>
                         </a>
-                        @endif
                     </div>
                 </div>
             </div>

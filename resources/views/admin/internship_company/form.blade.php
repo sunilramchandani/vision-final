@@ -160,6 +160,12 @@
                             </select>
                         </div>
                     </div>
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form-group">
+                            <label for="category">Start Date</label>
+                            <input type = "date" name = "start_date" value="{{ isset($company->start_date) ? $company->start_date : '' }}"">
+                        </div>
+                    </div>
                     
                 </div>
                 <div class="btn-container">

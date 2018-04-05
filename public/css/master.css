@@ -27,6 +27,12 @@
   background-image: url("/image/sticky.png");
   
 }
+.header{
+  object-fit: cover;
+}
+img{
+  object-fit: cover!important;
+}
 .sticky p{
   color:white;
   margin-top:9px;

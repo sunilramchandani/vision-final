@@ -1,3 +1,9 @@
+.Top-header-message {
+	padding-top: 5%;
+}
+.filter-main .col-xs-12 .dropdown{
+	height: 100px;
+}
 #siteNotice .firstHeading{
 	font-size:24px;
 }
@@ -108,6 +114,7 @@ hr{
 .company-whole{
 	box-shadow: 5px 5px 5px grey;
 	padding: 0;
+	margin-top: -65px;
 }
 .picture2 {
     padding: 0;
@@ -220,6 +227,7 @@ hr{
 	width:100%;
 	border-top-left-radius: 6px;
 	border-top-right-radius: 6px;
+	object-fit: cover;
 }
 .info-container{
 	background: white;

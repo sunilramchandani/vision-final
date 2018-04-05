@@ -166,6 +166,19 @@ class FeaturedImageController extends Controller
             $featuredimage->testimony_id = $request['testimony_id'];
         }
 
+        if ($request->has('first_static')){
+            $featuredimage->first_static = $request['first_static'];
+        }
+        if ($request->has('second_static')){
+            $featuredimage->second_static = $request['second_static'];
+        }
+        if ($request->has('third_static')){
+            $featuredimage->third_static = $request['third_static'];
+        }
+        if ($request->has('fourth_static')){
+            $featuredimage->fourth_static = $request['fourth_static'];
+        }
+
         $featuredimage->save();
         $success = array('ok'=> 'Success!');
         return redirect()->back()->with($success);

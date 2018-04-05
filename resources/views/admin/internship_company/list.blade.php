@@ -28,7 +28,7 @@
                         <tr>
                             <th>Company Name</th>
                             <th>Company Description</th>
-                            <th colspan="3">Action</th>
+                            <th colspan="4">Action</th>
                         </tr>
                     </thead>
 
@@ -56,6 +56,13 @@
                                         href="{{ route('internshipcompany.delete', $single_company->id) }}"
                                         class="btn btn-danger" onclick="ConfirmDelete();">
                                         <i class="fa fa-trash"><br>Delete</i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a
+                                        href="{{ route('internshipcompany.new_industry', $single_company->id) }}"
+                                        class="btn btn-info">
+                                        <i class="fa fa-trash"><br>Add Industry</i>
                                     </a>
                                 </td>
                             </tr>

@@ -273,25 +273,21 @@ class NewsController extends Controller
     public function userSingle($id)
     {
 
-        
-        $previous_news = $id - 1;
-        $next_news = $id + 1;
-
         $news = News::find($id);
-        $news_count = News::count();  
-        for( $i = 1; $i < $news_count; $i++){
-            $nextnews = News::find($id + $i);
-            if($nextnews != null){
-                break;
-            } 
+        $previousnews = News::find($id - 1);
+        if($previousnews == NULL){
+            $previousnews = "none";
         }
-        for( $i = $id; $i > 0; $i--){
-            $previousnews = News::find($i);  
-            if($previousnews != null){
-                break;
-            } 
-        } 
-        
+
+        // get next user id
+        $nextnews = News::find($id + 1);
+        if($nextnews == NULL){
+            $nextnews = "none";
+        }
+        $news_count = News::count(); 
+
+    
+
         
 
         $news_table = News::with('author', 'mainimageupload', 'newscategory')->orderBy('created_at', 'desc')->get();

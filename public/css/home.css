@@ -21,7 +21,28 @@
   	margin: 5px;
 }
 
-
+.carousel-indicators {
+    position: absolute;
+    bottom: -7px;
+    left: 50%;
+    z-index: 15;
+    width: 60%;
+    padding-left: 0;
+    margin-left: -30%;
+    text-align: center;
+    list-style: none;
+}
+.carousel-indicators li {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 1px;
+    text-indent: -999px;
+    cursor: pointer;
+    background-color: rgba(0,0,0,0);
+    border: 1px solid black;
+    border-radius: 10px;
+}
 .counters{
 	color:white;
 	padding-left: 5%;
@@ -148,7 +169,9 @@
 #p-commit {
   margin-bottom: 25px;
 }
-
+section{
+	padding-bottom: 25vh;
+}
 #promo-pict {
   margin-top: 25px;
   margin-bottom: 25px;
@@ -355,9 +378,9 @@ color:white;
 
 
 #infin{
-    width: 100%;
-    max-width: 90;
-    height: 30;
+	width: 100%;
+    max-width: 100px;
+    height: 40;
 
 }
 
@@ -652,7 +675,7 @@ color:white;
 	}
 	/* INFINITY SIGN */
 	#infin {
-	    height: 20px;
+	    height: 23px;
 	    width: 50px;
 	}
 
@@ -664,6 +687,7 @@ color:white;
 	    height: 650px;
 	    width: auto;
 	}
+
 	.img-border{
 		display: none;
 	}

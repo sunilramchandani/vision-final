@@ -5,10 +5,10 @@
     <h1 class="page-header">
         <div class="row">
             <div class="col-xs-10">
-                Internship Company 
+                Work & Travel Company 
             </div>
             <div class="col-xs-2">
-            <a href="<?php echo e(route('internshipcompany.trash')); ?>"><button class="btn"><i class="fa fa-trash" style="color:black;"> &nbsp; View Trash</i></button></a>
+            <a href="<?php echo e(route('workcompany.trash')); ?>"><button class="btn"><i class="fa fa-trash" style="color:black;"> &nbsp; View Trash</i></button></a>
             </div>
         </div>
     </h1>
@@ -39,30 +39,30 @@
                                 <td><?php echo e($single_company->description); ?></td>
                                 <td>
                                     <a
-                                        href="<?php echo e(route('internshipcompany.view', $single_company->id)); ?>"
+                                        href="<?php echo e(route('workcompany.view', $single_company->id)); ?>"
                                         class="btn btn-info">
                                         <i class="fa fa-eye"><br>View</i>
                                     </a>
                                 </td>
                                 <td>
                                     <a
-                                        href="<?php echo e(route('internshipcompany.adminedit', $single_company->id)); ?>"
+                                        href="<?php echo e(route('workcompany.adminedit', $single_company->id)); ?>"
                                         class="btn btn-warning">
                                         <i class="fa fa-edit"><br>Edit</i>
                                     </a>
                                 </td>
                                 <td>
                                     <a
-                                        href="<?php echo e(route('internshipcompany.delete', $single_company->id)); ?>"
-                                        class="btn btn-danger" onclick="ConfirmDelete();">
+                                        href="<?php echo e(route('workcompany.delete', $single_company->id)); ?>"
+                                        class="btn btn-danger">
                                         <i class="fa fa-trash"><br>Delete</i>
                                     </a>
                                 </td>
                                 <td>
                                     <a
-                                        href="<?php echo e(route('internshipcompany.new_industry', $single_company->id)); ?>"
-                                        class="btn btn-info">
-                                        <i class="fa fa-trash"><br>Add Industry</i>
+                                        href="<?php echo e(route('workcompany.new_industry', $single_company->id)); ?>"
+                                        class="btn btn-warning">
+                                        <i class="fa fa-edit"><br>Add Industry</i>
                                     </a>
                                 </td>
                             </tr>
@@ -78,15 +78,5 @@
         </div>
     </section>
 <?php $__env->stopSection(); ?>
-<script>
-    function ConfirmDelete() {
-        var x = confirm("Are you sure you want to delete?");
-        if (x){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-</script>
+
 <?php echo $__env->make('layouts.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

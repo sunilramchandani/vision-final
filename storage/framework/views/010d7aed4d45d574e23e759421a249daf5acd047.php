@@ -17,6 +17,7 @@
             <div class = "col-xs-3 resources">
                 <p>RESOURCES</p>
                 <ul>
+                    <li><a href = "/media">Media</a></li>
                     <li><a href = "/contactus">Join Our Team</a></li>
                 </ul>
             </div>

@@ -41,9 +41,10 @@
           </div>
         </div>
     <div class = "row text-center what-next-text">
-        <h2 id=whatsnext-title>What is Au Pair?</h2>
-        <div class = "col-xs-12 col-md-4 col-md-offset-4">
-            <p>The Au Pair exchange program allows carefully selected young people to live with American families and assist with childcare.</p>
+        <div class = "col-xs-12 col-md-4 col-md-offset-4 Top-header-message text-center">
+            @foreach($featuredimage_aupair as $first)
+                {!!$first->first_static!!}
+            @endforeach
         </div>
     </div>
 
@@ -74,9 +75,10 @@
 
     <!--What you need -->
     <div class = "row text-center what-next-text">
-        <h2 id=whatsnext-title>What you need?</h2>
-        <div class = "col-xs-12 col-md-4 col-md-offset-4">
-            <p>This program demands a high level of excellence and a desire to be of service. Check if you fit what we are looking for!</p>
+        <div class = "col-xs-12 col-md-4 col-md-offset-4 Top-header-message text-center">
+            @foreach($featuredimage_aupair as $first)
+                {!!$first->second_static!!}
+            @endforeach
         </div>
     </div>
     <div class="text-center container"> 
@@ -119,9 +121,10 @@
         <div class = "col-xs-12">
             <div class="col-xs-12">
                 <div class = "row text-center what-next-text">
-                    <h2 id=whatsnext-title>What's Next?</h2>
-                     <div class = "col-xs-12 col-md-4 col-md-offset-4">
-                        <p>Our process is  smooth and easy. We can facilitate your application and get you to your dream destination as soon as possible!</p>
+                    <div class = "col-xs-12 col-md-4 col-md-offset-4 Top-header-message text-center">
+                        @foreach($featuredimage_aupair as $first)
+                            {!!$first->third_static!!}
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -193,10 +196,11 @@
         <div class="container">
             <div class="row testimony-header">
                 <div class="about-font text-center">
-                     <h3>Our Community</h3>
-                     <div class = "col-xs-12 col-md-4 col-md-offset-4">
-                        <p>Get inspiration from those who have come before you. Here are some of our students who have experienced work life abroad.</p>
-                    </div>  
+                    <div class = "col-xs-12 col-md-4 col-md-offset-4 Top-header-message text-center">
+                        @foreach($featuredimage_aupair as $first)
+                            {!!$first->fourth_static!!}
+                        @endforeach
+                    </div>
                 </div>
             </div>
             <div class = "row testimony-content">

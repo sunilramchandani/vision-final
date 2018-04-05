@@ -71,7 +71,7 @@ class EventPluginController extends Controller
                     $endtime->format('g:i a');
                     $endtime->format('l, F j, Y'); 
 
-                    if (isset($result['place']['name'])){
+                    if (isset($result['place']['name']) && isset($result['place']['id'])){
 
                         $dataset = array(
                             'event_name' => $result['name'],

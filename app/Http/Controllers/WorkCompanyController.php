@@ -31,7 +31,13 @@ class WorkCompanyController extends Controller
      */
     public function index(Request $request)
     {
-        $steps = PageStep::where('page_name','internship')->get();
+        $internshipCompany_table_filter_state = WorkCompany::groupBy('state')->get();
+        $internshipCompany_table_filter_industry= WorkIndustry::groupBy('industry_name')->get();
+        $internshipCompany_table_filter_duration = WorkCompany::groupBy('start_date')->get();
+
+
+
+        $steps = PageStep::where('page_name','work')->get();
         $get_testimonial = DB::table('featuredimage')
         ->where('page_name', 'work')
         ->first()
@@ -50,9 +56,9 @@ class WorkCompanyController extends Controller
                         ->where('country', 'United States')
                         ->orderBy('id','asc')
                         ->pluck('total');
-
+        $featuredimage_internship = FeaturedImage::where('page_name','Work')->get();
         if (request()->has('id')){
-            $featuredimage_internship = FeaturedImage::where('page_name','Work')->get();
+            
             $internshipCompany_table = WorkCompany::with('work_opportunity', 'work_qualifications','work_industry', 'work_duration')->orderBy('id','asc')->get();
 
             
@@ -68,7 +74,70 @@ class WorkCompanyController extends Controller
             $internship_longtitude = WorkCompany::where('id', request('id'))->orderBy('featured','desc')->pluck('longtitude');
 
 
-            return view('users.work.work', compact('rate_us_3rd','rate_us_2nd','rate_us_1st','internship_longtitude','internship_latitude','testimonial', 'featuredimage_internship', 'internshipCompany_table', 'internship_filter','internship_addresses','internship_name','internship_desc','internship_id', 'internship_image','internship_featured','steps'));
+            return view('users.work.work', compact('internshipCompany_table_filter_state','internshipCompany_table_filter_industry','internshipCompany_table_filter_duration','rate_us_3rd','rate_us_2nd','rate_us_1st','internship_longtitude','internship_latitude','testimonial', 'featuredimage_internship', 'internshipCompany_table', 'internship_filter','internship_addresses','internship_name','internship_desc','internship_id', 'internship_image','internship_featured','steps'));
+        }
+        else if (request()->has('industry_name')){
+
+            $get_industry = WorkIndustry::where('industry_name', request('industry_name'))
+                            ->pluck('company_id');
+
+            $internshipCompany_table = WorkCompany::with('work_opportunity', 'work_qualifications','work_industry', 'work_duration')
+                                    ->orderBy('featured','desc')
+                                    ->orderBy('id', 'ASC')
+                                    ->whereIn('id', $get_industry)
+                                    ->get();
+
+            
+            $internship_addresses = WorkCompany::whereIn('id', $get_industry)
+                                    ->whereNull('deleted_at')
+                                    ->orderBy('featured','desc')
+                                    ->orderBy('id', 'ASC')
+                                    ->pluck('housing_address');
+            $internship_name = WorkCompany::whereIn('id', $get_industry)
+                                ->whereNull('deleted_at')
+                                ->orderBy('featured','desc')
+                                ->orderBy('id', 'ASC')
+                                ->pluck('company_name');
+            $internship_desc = WorkCompany::whereIn('id', $get_industry)
+                                ->whereNull('deleted_at')
+                                ->orderBy('featured','desc')
+                                ->orderBy('id', 'ASC')
+                                ->pluck('description');
+            $internship_filter = WorkCompany::with('work_opportunity', 'work_qualifications','work_industry', 'work_duration')
+                                ->whereIn('id', $get_industry)
+                                ->whereNull('deleted_at')
+                                ->orderBy('featured','desc')
+                                ->orderBy('id', 'ASC')
+                                ->get();
+            
+            $internship_id = WorkCompany::whereIn('id', $get_industry)
+                            ->whereNull('deleted_at')
+                            ->orderBy('featured','desc')
+                            ->orderBy('id', 'ASC')
+                            ->pluck('id');
+            $internship_image = WorkCompany::whereIn('id', $get_industry)
+                                ->whereNull('deleted_at')
+                                ->orderBy('featured','desc')
+                                ->orderBy('id', 'ASC')
+                                ->pluck('image');
+            $internship_featured = WorkCompany::whereIn('id', $get_industry)
+                                ->whereNull('deleted_at')
+                                ->orderBy('featured','desc')
+                                ->orderBy('id', 'ASC')
+                                ->pluck('featured');
+
+            $internship_latitude = WorkCompany::whereIn('id', $get_industry)
+                                ->whereNull('deleted_at')
+                                ->orderBy('featured','desc')
+                                ->orderBy('id', 'ASC')
+                                ->pluck('latitude');
+            $internship_longtitude = WorkCompany::whereIn('id', $get_industry)
+                                ->whereNull('deleted_at')
+                                ->orderBy('featured','desc')
+                                ->orderBy('id', 'ASC')
+                                ->pluck('longtitude');
+            
+             return view('users.work.work', compact('internshipCompany_table_filter_state','internshipCompany_table_filter_industry','internshipCompany_table_filter_duration','rate_us_3rd','rate_us_2nd','rate_us_1st','internship_longtitude','internship_latitude','testimonial', 'featuredimage_internship', 'internshipCompany_table', 'internship_filter','internship_addresses','internship_name','internship_desc','internship_id', 'internship_image','internship_featured','steps'));
         }
 
         else if (request()->has('country')){
@@ -90,27 +159,133 @@ class WorkCompanyController extends Controller
             $internship_longtitude = WorkCompany::where('country', request('country'))->orderBy('featured','desc')->pluck('longtitude');
 
 
-            return view('users.work.work', compact('rate_us_3rd','rate_us_2nd','rate_us_1st','internship_longtitude','internship_latitude','testimonial','featuredimage_internship', 'internshipCompany_table', 'internship_filter','internship_addresses','internship_name','internship_desc','internship_id', 'internship_image','internship_featured','steps'));
+            return view('users.work.work', compact('internshipCompany_table_filter_state','internshipCompany_table_filter_industry','internshipCompany_table_filter_duration','rate_us_3rd','rate_us_2nd','rate_us_1st','internship_longtitude','internship_latitude','testimonial','featuredimage_internship', 'internshipCompany_table', 'internship_filter','internship_addresses','internship_name','internship_desc','internship_id', 'internship_image','internship_featured','steps'));
         }
         else if (request()->has('duration')){
 
+           
+
+$internshipCompany_table = WorkCompany::with('work_opportunity', 'work_qualifications','work_industry', 'work_duration')
+                                    ->orderBy('featured','desc')
+                                    ->orderBy('id', 'ASC')
+                                    ->where('start_date', request('duration'))
+                                    ->get();
+
+
             
-            $featuredimage_internship = FeaturedImage::where('page_name','Work')->get();
-            $internshipCompany_table = WorkCompany::with('work_opportunity', 'work_qualifications','work_industry', 'work_duration')->orderBy('featured','desc')->where('duration', request('duration'))->paginate(4)->appends('duration', request('duration'));
+            $internship_addresses = WorkCompany::where('start_date', request('duration'))
+                                    ->whereNull('deleted_at')
+                                    ->orderBy('featured','desc')
+                                    ->orderBy('id', 'ASC')
+                                    ->pluck('housing_address');
+            $internship_name = WorkCompany::where('start_date', request('duration'))
+                                ->whereNull('deleted_at')
+                                ->orderBy('featured','desc')
+                                ->orderBy('id', 'ASC')
+                                ->pluck('company_name');
+            $internship_desc = WorkCompany::where('start_date', request('du`ation'))
+                                ->whereNull('deleted_at')
+                                ->orderBy('featured','desc')
+                                ->orderBy('id', 'ASC')
+                                ->pluck('description');
+            $internship_filter = WorkCompany::with('work_opportunity', 'work_qualifications','work_industry', 'work_duration')
+                                ->where('start_date', request('duration'))
+                                ->whereNull('deleted_at')
+                                ->orderBy('featured','desc')
+                                ->orderBy('id', 'ASC')
+                                ->get();
+            
+            $internship_id = WorkCompany::where('start_date', request('duration'))
+                            ->whereNull('deleted_at')
+                            ->orderBy('featured','desc')
+                            ->orderBy('id', 'ASC')
+                            ->pluck('id');
+            $internship_image = WorkCompany::where('start_date', request('duration'))
+                                ->whereNull('deleted_at')
+                                ->orderBy('featured','desc')
+                                ->orderBy('id', 'ASC')
+                                ->pluck('image');
+            $internship_featured = WorkCompany::where('start_date', request('duration'))
+                                ->whereNull('deleted_at')
+                                ->orderBy('featured','desc')
+                                ->orderBy('id', 'ASC')
+                                ->pluck('featured');
+
+            $internship_latitude = WorkCompany::where('start_date', request('duration'))
+                                ->whereNull('deleted_at')
+                                ->orderBy('featured','desc')
+                                ->orderBy('id', 'ASC')
+                                ->pluck('latitude');
+            $internship_longtitude = WorkCompany::where('start_date', request('duration'))
+                                ->whereNull('deleted_at')
+                                ->orderBy('featured','desc')
+                                ->orderBy('id', 'ASC')
+                                ->pluck('longtitude');
+            
+           return view('users.work.work', compact('internshipCompany_table_filter_state','internshipCompany_table_filter_industry','internshipCompany_table_filter_duration','rate_us_3rd','rate_us_2nd','rate_us_1st','internship_longtitude','internship_latitude','testimonial', 'featuredimage_internship', 'internshipCompany_table', 'internship_filter','internship_addresses','internship_name','internship_desc','internship_id', 'internship_image','internship_featured','steps'));
+        } 
+        else if (request()->has('industry_name')){
+
+            $get_industry = WorkIndustry::where('industry_name', request('industry_name'))
+                            ->pluck('company_id');
+
+            $internshipCompany_table = WorkCompany::with('work_opportunity', 'work_qualifications','work_industry', 'work_duration')
+                                    ->orderBy('featured','desc')
+                                    ->orderBy('id', 'ASC')
+                                    ->whereIn('id', $get_industry)
+                                    ->get();
 
             
-            $internship_addresses = WorkCompany::where('duration', request('duration'))->orderBy('featured','desc')->pluck('housing_address');
-            $internship_name = WorkCompany::where('duration', request('duration'))->orderBy('featured','desc')->pluck('company_name');
-            $internship_desc = WorkCompany::where('duration', request('duration'))->orderBy('featured','desc')->pluck('description');
-            $internship_filter = WorkCompany::with('work_opportunity', 'work_qualifications','work_industry', 'work_duration')->get();
-            $internship_id = WorkCompany::where('duration', request('duration'))->orderBy('featured','desc')->pluck('id');
-            $internship_image = WorkCompany::orderBy('featured','desc')->pluck('image');
-            $internship_featured = WorkCompany::where('duration', request('duration'))->orderBy('featured','desc')->pluck('featured');
+            $internship_addresses = WorkCompany::whereIn('id', $get_industry)
+                                    ->whereNull('deleted_at')
+                                    ->orderBy('featured','desc')
+                                    ->orderBy('id', 'ASC')
+                                    ->pluck('housing_address');
+            $internship_name = WorkCompany::whereIn('id', $get_industry)
+                                ->whereNull('deleted_at')
+                                ->orderBy('featured','desc')
+                                ->orderBy('id', 'ASC')
+                                ->pluck('company_name');
+            $internship_desc = WorkCompany::whereIn('id', $get_industry)
+                                ->whereNull('deleted_at')
+                                ->orderBy('featured','desc')
+                                ->orderBy('id', 'ASC')
+                                ->pluck('description');
+            $internship_filter = WorkCompany::with('work_opportunity', 'work_qualifications','work_industry', 'work_duration')
+                                ->whereIn('id', $get_industry)
+                                ->whereNull('deleted_at')
+                                ->orderBy('featured','desc')
+                                ->orderBy('id', 'ASC')
+                                ->get();
+            
+            $internship_id = WorkCompany::whereIn('id', $get_industry)
+                            ->whereNull('deleted_at')
+                            ->orderBy('featured','desc')
+                            ->orderBy('id', 'ASC')
+                            ->pluck('id');
+            $internship_image = WorkCompany::whereIn('id', $get_industry)
+                                ->whereNull('deleted_at')
+                                ->orderBy('featured','desc')
+                                ->orderBy('id', 'ASC')
+                                ->pluck('image');
+            $internship_featured = WorkCompany::whereIn('id', $get_industry)
+                                ->whereNull('deleted_at')
+                                ->orderBy('featured','desc')
+                                ->orderBy('id', 'ASC')
+                                ->pluck('featured');
 
-
-            $internship_latitude = WorkCompany::where('duration', request('duration'))->orderBy('featured','desc')->pluck('latitude');
-            $internship_longtitude = WorkCompany::where('duration', request('duration'))->orderBy('featured','desc')->pluck('longtitude');
-            return view('users.work.work', compact('rate_us_3rd','rate_us_2nd','rate_us_1st','internship_longtitude','internship_latitude','testimonial','featuredimage_internship', 'internshipCompany_table', 'internship_filter','internship_addresses','internship_name','internship_desc','internship_id', 'internship_image','internship_featured','steps'));
+            $internship_latitude = WorkCompany::whereIn('id', $get_industry)
+                                ->whereNull('deleted_at')
+                                ->orderBy('featured','desc')
+                                ->orderBy('id', 'ASC')
+                                ->pluck('latitude');
+            $internship_longtitude = WorkCompany::whereIn('id', $get_industry)
+                                ->whereNull('deleted_at')
+                                ->orderBy('featured','desc')
+                                ->orderBy('id', 'ASC')
+                                ->pluck('longtitude');
+            
+            return view('users.work.work', compact('internshipCompany_table_filter_state','internshipCompany_table_filter_industry','internshipCompany_table_filter_duration','rate_us_3rd','rate_us_2nd','rate_us_1st','internship_longtitude','internship_latitude','testimonial', 'featuredimage_internship', 'internshipCompany_table', 'internship_filter','internship_addresses','internship_name','internship_desc','internship_id', 'internship_image','internship_featured','steps'));
         }
         else if (request()->has('state')){
 
@@ -131,7 +306,7 @@ class WorkCompanyController extends Controller
             $internship_longtitude = WorkCompany::where('state', request('state'))->orderBy('featured','desc')->pluck('longtitude');
 
 
-            return view('users.work.work', compact('rate_us_3rd','rate_us_2nd','rate_us_1st','internship_longtitude','internship_latitude','internship_featured','testimonial', 'featuredimage_internship', 'internshipCompany_table', 'internship_filter','internship_addresses','internship_name','internship_desc','internship_id', 'internship_image','steps'));
+            return view('users.work.work', compact('internshipCompany_table_filter_state','internshipCompany_table_filter_industry','internshipCompany_table_filter_duration','rate_us_3rd','rate_us_2nd','rate_us_1st','internship_longtitude','internship_latitude','internship_featured','testimonial', 'featuredimage_internship', 'internshipCompany_table', 'internship_filter','internship_addresses','internship_name','internship_desc','internship_id', 'internship_image','steps'));
         }
 
         else{
@@ -148,7 +323,7 @@ class WorkCompanyController extends Controller
             $internship_latitude = WorkCompany::orderBy('featured','desc')->pluck('latitude');
             $internship_longtitude = WorkCompany::orderBy('featured','desc')->pluck('longtitude');
 
-            return view('users.work.work', compact('rate_us_3rd','rate_us_2nd','rate_us_1st','internship_longtitude','internship_latitude','testimonial','featuredimage_internship', 'internshipCompany_table','internship_addresses','internship_name','internship_desc','internship_id','internship_image','internship_featured','internship_filter','steps'));
+            return view('users.work.work', compact('internshipCompany_table_filter_state','internshipCompany_table_filter_industry','internshipCompany_table_filter_duration','rate_us_3rd','rate_us_2nd','rate_us_1st','internship_longtitude','internship_latitude','testimonial','featuredimage_internship', 'internshipCompany_table','internship_addresses','internship_name','internship_desc','internship_id','internship_image','internship_featured','internship_filter','steps'));
         }
     }
 
@@ -462,30 +637,25 @@ class WorkCompanyController extends Controller
         return redirect()->route('workcompany.list')->with($success);
     }
 
-    public function durationIndex()
+    public function createindustry($id)
     {
-        $duration_table = WorkDuration::all();
-        return view('admin.work_company.duration.list', compact('duration_table'));
+        $company = WorkCompanyLib::getById($id);
+        return view('admin.work_company.industry', compact('company'));
     }
 
-    public function createDuration($id)
-    {
-        $duration = WorkDuration::find($id);
-        return view('admin.work_company.duration.form', compact('duration'));
-    }
-
-    public function storeDuration($id, Request $request)
+    public function storeindustry($id, Request $request)
     {
 
-        $duration = WorkDuration::find($id);
-        $duration->duration_months	 = $request['duration_months'];
-        $duration->duration_price = $request['duration_price'];
-        $duration->duration_start_date = $request['duration_start_date'];
-        $duration->save();
+        $company = WorkCompanyLib::getById($id);
 
+        $industry = new WorkIndustry;
+        $industry->industry_name = $request['industry_name'];
+        $industry->company_id = $id;
+        $industry->save();
         $success = array('ok'=> 'Success');
-        return redirect()->route('workcompany.durationList')->with($success);
+        return redirect()->route('workcompany.list')->with($success);
     }
+
 
     public function viewTrash(){
         $company = WorkCompany::onlyTrashed()->get();

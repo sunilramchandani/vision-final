@@ -61,11 +61,11 @@
         </div>
     
     <div class = " row">
-        <div class = "col-md-12 col-xs-12 Top-header-message text-center">
-            <h1>Your Destination</h1>
-            <div class = "col-xs-12 col-md-4 col-md-offset-4">
-                <p> Our Internship/Trainee Programs prepare students for life and work outside of school. Participants get to work in world-class facilities in the US and in other locations across the globe. </p>
-            </div>
+        <div class = "col-xs-12 col-md-4 col-md-offset-4 Top-header-message text-center">
+            <?php $__currentLoopData = $featuredimage_internship_us; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $first): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php echo $first->first_static; ?>
+
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
     </div>
     <div class = "body-content" id= "body-content">
@@ -87,53 +87,51 @@
                         <div class="dropdown-content-filler">
                           <div id="links">
                           <a href="/internshipcompany">All</a>
-                            <?php if( Request::get('state')  ): ?>
-                                <?php $__currentLoopData = $internship_filter; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $filter): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                          <?php if( Request::get('state')  ): ?>
+                                <?php $__currentLoopData = $internshipCompany_table_filter_state; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $filter): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <a href="/internshipcompany?state=<?php echo e($filter->state); ?>"><?php echo e($filter->state); ?></a>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             <?php else: ?>
-                                <?php $__currentLoopData = $internshipCompany_table; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $company): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <?php $__currentLoopData = $internshipCompany_table_filter_state; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $company): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <a href="/internshipcompany?state=<?php echo e($company->state); ?>"><?php echo e($company->state); ?></a>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             <?php endif; ?>
                             </div>
                         </div>
                     </div>
-                  <div class="dropdown">
-                      <a class="dropbtn-filter"><strong>Industry </strong><i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                      <div class="dropdown-content-filler">
-                        <?php if( Request::get('state')  ): ?>
-                            <?php $__currentLoopData = $internship_filter; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $filter): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <?php $__currentLoopData = $filter->internship_industry; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $industry): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <a href="/internshipcompany?industry=<?php echo e($industry->industry_name); ?>"><?php echo e($industry->industry_name); ?></a>
+                    <div class="dropdown">
+                        <a class="dropbtn-filter"><strong>Industry </strong><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                        <div class="dropdown-content-filler">
+                          <div id="links">
+                          <a href="/internshipcompany">All</a>
+                          <?php if( Request::get('industry_name')  ): ?>
+                                <?php $__currentLoopData = $internshipCompany_table_filter_industry; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $filter): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <a href="/internshipcompany?industry_name=<?php echo e($filter->industry_name); ?>"><?php echo e($filter->industry_name); ?></a>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        <?php else: ?>
-                            <?php $__currentLoopData = $internshipCompany_table; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $company): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <?php $__currentLoopData = $company->internship_industry; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $industry): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <a href="/internshipcompany?industry=<?php echo e($industry->industry_name); ?>"><?php echo e($industry->industry_name); ?></a>
+                            <?php else: ?>
+                                <?php $__currentLoopData = $internshipCompany_table_filter_industry; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $company): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <a href="/internshipcompany?industry_name=<?php echo e($company->industry_name); ?>"><?php echo e($company->industry_name); ?></a>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        <?php endif; ?>
-                      </div>
+                            <?php endif; ?>
+                            </div>
+                        </div>
                     </div>
                     <div class="dropdown">
-                      <a class="dropbtn-filter"><strong>Start Dates </strong><i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                      <div class="dropdown-content-filler">
-                         <?php if( Request::get('state')  ): ?>
-                            <?php $__currentLoopData = $internship_filter; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $filter): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <?php $__currentLoopData = $filter->internship_duration; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $duration): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <a href="/internshipcompany?duration=<?php echo e($duration->duration_start_date); ?>"><?php echo e($duration->duration_start_date); ?></a>
+                        <a class="dropbtn-filter"><strong>Start Date </strong><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                        <div class="dropdown-content-filler">
+                          <div id="links">
+                          <a href="/internshipcompany">All</a>
+                          <?php if( Request::get('duration')  ): ?>
+                                <?php $__currentLoopData = $internshipCompany_table_filter_duration; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $filter): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <a href="/internshipcompany?duration=<?php echo e($filter->start_date); ?>"><?php echo e($filter->start_date); ?></a>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        <?php else: ?>
-                            <?php $__currentLoopData = $internshipCompany_table; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $company): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                 <?php $__currentLoopData = $company->internship_duration; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $duration): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <a href="/internshipcompany?duration=<?php echo e($duration->duration_start_date); ?>"><?php echo e($duration->duration_start_date); ?></a>
+                            <?php else: ?>
+                                <?php $__currentLoopData = $internshipCompany_table_filter_duration; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $company): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <a href="/internshipcompany?duration=<?php echo e($company->start_date); ?>"><?php echo e($company->start_date); ?></a>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        <?php endif; ?>
-                      </div>
+                            <?php endif; ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -184,31 +182,13 @@
         <div class = "col-xs-6 form-group">
             <select class = "form-control" name="current_city" id="dynamic_select">
             <option value="" disabled selected>Select</option>
-                <?php if( Request::get('state')  ): ?>
-                    <?php $__currentLoopData = $internship_filter; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $filter): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php if( Request::get('state')  ): ?>
+                    <?php $__currentLoopData = $internshipCompany_table_filter_state; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $filter): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                        <option value ="internshipcompany?state=<?php echo e($filter->state); ?>"><?php echo e($filter->state); ?></option>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 <?php else: ?>
-                    <?php $__currentLoopData = $internshipCompany_table; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $company): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php $__currentLoopData = $internshipCompany_table_filter_state; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $company): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <option value ="internshipcompany?state=<?php echo e($company->state); ?>"><?php echo e($company->state); ?></option>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                <?php endif; ?>
-            </select>
-        </div>
-        <div class = "col-xs-6 form-group">
-            <select class = "form-control" name="internship_industry" id="">
-                <option value="" disabled selected>Select</option>
-                <?php if( Request::get('state')  ): ?>
-                     <?php $__currentLoopData = $internship_filter; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $filter): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <?php $__currentLoopData = $filter->internship_duration; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $duration): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <option value ="internshipcompany?state={$industry->industry_name}}"><?php echo e($industry->industry_name); ?></option>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                <?php else: ?>
-                    <?php $__currentLoopData = $internshipCompany_table; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $company): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <?php $__currentLoopData = $company->internship_industry; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $industry): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                             <option value ="internshipcompany?state=<?php echo e($industry->industry_name); ?>"><?php echo e($industry->industry_name); ?></option>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 <?php endif; ?>
             </select>
@@ -221,18 +201,17 @@
             <select class = "form-control" name="internship_duration" id="">
                 <option value="" disabled selected>Select</option>
                 <?php if( Request::get('state')  ): ?>
-                    <?php $__currentLoopData = $internship_filter; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $filter): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <?php $__currentLoopData = $filter->internship_duration; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $duration): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            
+                        <?php $__currentLoopData = $internshipCompany_table_filter_duration; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $duration): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <option value ="internshipcompany?state=<?php echo e($duration->duration_start_date); ?>"><?php echo e($duration->duration_start_date); ?></option>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 <?php else: ?>
                  
-                     <?php $__currentLoopData = $internshipCompany_table; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $company): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <?php $__currentLoopData = $company->internship_duration; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $duration): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                         <?php $__currentLoopData = $internshipCompany_table_filter_duration; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $duration): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <option value ="internshipcompany?state=<?php echo e($duration->duration_start_date); ?>"><?php echo e($duration->duration_start_date); ?></option>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                
                 <?php endif; ?>
             </select>
         </div>
@@ -297,9 +276,11 @@
     <div class = "container">
         <div class = "col-xs-12">
             <div class = "row text-center what-next-text">
-                <h2 id=whatsnext-title>What's Next?</h2>
-                <div class = "col-xs-12 col-md-4 col-md-offset-4">
-                    <p>Our process is  smooth and easy. We can facilitate your application and get you to your dream destination as soon as possible!</p>
+                <div class = "col-xs-12 col-md-4 col-md-offset-4 Top-header-message text-center">
+                    <?php $__currentLoopData = $featuredimage_internship_us; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $first): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php echo $first->second_static; ?>
+
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
             </div>
         </div>
@@ -574,9 +555,11 @@
  <!--testimony-->
         <div class="container">
             <div class="row testimony-header">
-                <div class=" col-md-8 col-md-offset-2 col-xs-12 about-font text-center">
-                     <h3>Our Community</h3>
-                     <p>We are proud to have an amazing community of students and professionals who have received the VIP treatment. Listen to their stories.</p>
+                <div class = "col-xs-12 col-md-4 col-md-offset-4 Top-header-message text-center">
+                    <?php $__currentLoopData = $featuredimage_internship_us; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $first): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php echo $first->third_static; ?>
+
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
             </div>
             <?php if( Request::get('country') == "United States"): ?>

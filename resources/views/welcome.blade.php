@@ -287,11 +287,6 @@
         <div id ="carousel-featured" class="col-md-12 hidden-xs hidde-sm carousel slide " data-ride="carousel">
             <!-- Indicators -->
             
-            <ol class="carousel-indicators">
-            @foreach($internshipcompany_table as $internship)
-                <li data-target="#carousel-example-generic" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
-            @endforeach
-            </ol>
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 @foreach($internshipcompany_table as $internship)
@@ -347,7 +342,20 @@
             <!-- end of carousel -->
         </div>
         <div class = "container">
+            <div id ="carousel-featured2" class="col-md-12 hidden-lg hidden-md carousel slide " data-ride="carousel">
+            <!-- Indicators -->
+            
+            <ol class="carousel-indicators">
+            @foreach($internshipcompany_table as $internship)
+                <li data-target="#carousel-example-generic" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
+            @endforeach
+            </ol>
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
              @foreach($internshipcompany_table as $internship)
+            <div class="item {{ $loop->first ? ' active' : '' }}">
+            <div class="carousel-inner">
+            <div class="carousel-item active">
             <div class="hidden-md hidden-lg col-xs-12 ">
                 <div class = "col-xs-12 mobile-featured">
                     <img src="{{ URL::asset('image/uploaded_company_image')}}/{{$internship->image}}" alt="" class="event-img img">
@@ -372,9 +380,24 @@
                     </div>
                 </div>
             </div>
+            </div>
+            </div>
+            </div>
              @endforeach
+              @if ($internshipcompany_table->count() != 1)
+                <!-- Controls -->
+                <a class="left carousel-control hidden-md hidden-lg" href="#carousel-featured2" role="button" data-slide="prev" style="background: none !important; color:black;">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control hidden-md hidden-lg" href="#carousel-featured2" role="button" data-slide="next" style="background: none !important; color:black;">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+                @endif
         </div>
     </div>
+</div>
     <!-- end of Featured --> 
 </section>
     <section>

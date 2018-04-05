@@ -349,7 +349,20 @@
             <!-- end of carousel -->
         </div>
         <div class = "container">
+            <div id ="carousel-featured2" class="col-md-12 hidden-lg hidden-md carousel slide " data-ride="carousel">
+            <!-- Indicators -->
+            
+            <ol class="carousel-indicators">
+            <?php $__currentLoopData = $internshipcompany_table; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $internship): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <li data-target="#carousel-example-generic" data-slide-to="<?php echo e($loop->index); ?>" class="<?php echo e($loop->first ? 'active' : ''); ?>"></li>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </ol>
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
              <?php $__currentLoopData = $internshipcompany_table; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $internship): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <div class="item <?php echo e($loop->first ? ' active' : ''); ?>">
+            <div class="carousel-inner">
+            <div class="carousel-item active">
             <div class="hidden-md hidden-lg col-xs-12 ">
                 <div class = "col-xs-12 mobile-featured">
                     <img src="<?php echo e(URL::asset('image/uploaded_company_image')); ?>/<?php echo e($internship->image); ?>" alt="" class="event-img img">
@@ -374,9 +387,24 @@
                     </div>
                 </div>
             </div>
+            </div>
+            </div>
+            </div>
              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+              <?php if($internshipcompany_table->count() != 1): ?>
+                <!-- Controls -->
+                <a class="left carousel-control hidden-md hidden-lg" href="#carousel-featured2" role="button" data-slide="prev" style="background: none !important; color:black;">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control hidden-md hidden-lg" href="#carousel-featured2" role="button" data-slide="next" style="background: none !important; color:black;">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+                <?php endif; ?>
         </div>
     </div>
+</div>
     <!-- end of Featured --> 
 </section>
     <section>

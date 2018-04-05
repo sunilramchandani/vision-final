@@ -20,11 +20,10 @@
 		<form action="{{route('application.store')}}" method="post" role="form"  enctype="multipart/form-data"> 
 		{{csrf_field()}}
         <div class = "row text-title text-center">
-            <div class = "col-md-6 col-md-offset-3 col-xs-12">
-                <h2>Your Assesment Form</h2>
-                <p>Fill in the assessment form below and a VIP representative will reach out to you
-                ASAP about the program you are intereseted in. We recommend you check carefully all
-                the information you provide in order to have a smoother a application process. Thank you!</p>
+            <div class = "col-xs-12 col-md-4 col-md-offset-4 Top-header-message text-center">
+                @foreach($featuredimage_application as $first)
+                    {!!$first->first_static!!}
+                @endforeach
             </div>
         </div>
 

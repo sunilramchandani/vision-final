@@ -44,11 +44,10 @@
           </div>
         </div>
     <div class = " row">
-        <div class = "col-md-12 col-xs-12 Top-header-message text-center">
-            <h1>Your Destination</h1>
-            <div class = "col-xs-12 col-md-4 col-md-offset-4">
-                <p> Your journey begins with Vision International and its wide network of reputable partners across the country, enabling you to travel and work in your location of choice. </p>
-            </div>
+        <div class = "col-xs-12 col-md-4 col-md-offset-4 Top-header-message text-center">
+            @foreach($featuredimage_internship as $first)
+                {!!$first->first_static!!}
+            @endforeach
         </div>
     </div>
     <div class = "body-content" id= "body-content">
@@ -56,22 +55,18 @@
             <div class = "hidden-xs hidden-sm col-md-10 filter-main">
                 <div class = "col-xs-12">
                     <div class="dropdown">
-                      <a class="dropbtn-filter"><strong>Industry </strong><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                      <a class="dropbtn-filter"><strong>State </strong><i class="fa fa-angle-down" aria-hidden="true"></i></a>
                       <div class="dropdown-content-filler">
                       <div id="links">
-                        @if ( Request::get('state')  )
-                            @foreach ($internship_filter as $filter)
-                                @foreach ($filter->work_industry as $industry)
-                                    <a href="/workcompany?industry={{$industry->industry_name}}">{{$industry->industry_name}}</a>
+                      @if ( Request::get('state')  )
+                                @foreach ($internshipCompany_table_filter_state as $filter)
+                                    <a href="/workcompany?state={{$filter->state}}">{{$filter->state}}</a>
                                 @endforeach
-                            @endforeach
-                        @else
-                            @foreach ($internshipCompany_table as $company)
-                                @foreach ($company->work_industry as $industry)
-                                    <a href="/workcompany?industry={{$industry->industry_name}}">{{$industry->industry_name}}</a>
+                            @else
+                                @foreach ($internshipCompany_table_filter_state as $company)
+                                    <a href="/workcompany?state={{$company->state}}">{{$company->state}}</a>
                                 @endforeach
-                            @endforeach
-                        @endif
+                            @endif
                         </div>
                       </div>
                     </div>
@@ -92,6 +87,39 @@
                                 @endforeach
                             @endforeach
                         @endif
+                        </div>
+                      </div>
+                    </div>
+                    <div class="dropdown">
+                        <a class="dropbtn-filter"><strong>Industry </strong><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                        <div class="dropdown-content-filler">
+                          <div id="links">
+                          <a href="/workcompany">All</a>
+                          @if ( Request::get('industry_name')  )
+                                @foreach ($internshipCompany_table_filter_industry as $filter)
+                                    <a href="/workcompany?industry_name={{$filter->industry_name}}">{{$filter->industry_name}}</a>
+                                @endforeach
+                            @else
+                                @foreach ($internshipCompany_table_filter_industry as $company)
+                                    <a href="/workcompany?industry_name={{$company->industry_name}}">{{$company->industry_name}}</a>
+                                @endforeach
+                            @endif
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                      <a class="dropbtn-filter"><strong>Start Date </strong><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                      <div class="dropdown-content-filler">
+                      <div id="links">
+                      @if ( Request::get('duration')  )
+                                @foreach ($internshipCompany_table_filter_state as $filter)
+                                    <a href="/workcompany?duration={{$filter->start_date}}">{{$filter->start_date}}</a>
+                                @endforeach
+                            @else
+                                @foreach ($internshipCompany_table_filter_state as $company)
+                                    <a href="/workcompany?duration={{$company->start_date}}">{{$company->start_date}}</a>
+                                @endforeach
+                            @endif
                         </div>
                       </div>
                     </div>
@@ -247,9 +275,10 @@
     <div class = "container">
         <div class = "col-xs-12">
             <div class = "row text-center what-next-text">
-                <h2 id=whatsnext-title>What's Next?</h2>
-                <div class = "col-xs-12 col-md-4 col-md-offset-4">
-                    <p>Our process is  smooth and easy. We can facilitate your application and get you to your dream destination as soon as possible!</p>
+                <div class = "col-xs-12 col-md-4 col-md-offset-4 Top-header-message text-center">
+                    @foreach($featuredimage_internship as $first)
+                        {!!$first->second_static!!}
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -411,9 +440,10 @@
 
         <div class="container">
             <div class="row testimony-header">
-                <div class=" col-md-8 col-md-offset-2 col-xs-12 about-font text-center">
-                     <h3>Our Community</h3>
-                     <p>We are proud to have an amazing community of students and professionals who have received the VIP treatment. Listen to their stories.</p>
+                <div class = "col-xs-12 col-md-4 col-md-offset-4 Top-header-message text-center">
+                    @foreach($featuredimage_internship as $first)
+                        {!!$first->third_static!!}
+                    @endforeach
                 </div>
             </div>
             <div class = "row testimony-content">
